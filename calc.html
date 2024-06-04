@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            width: 500px;
+            height: 500px;
+            margin: auto;
+            margin-top: 100px;
+            text-align: center;
+            background-color: lightblue;
+        }
+        table tr td{
+            padding: 10px;
+        }
+        table tr td input{
+            width:calc(100% - 10px);
+            height: 30px;
+            text-align: right;
+            padding-right: 10px;
+        }
+        table tr td button{
+            width: 60px;
+            height: 60px;
+            color: white;
+            font-weight: bolder;
+            font-size: 22px;
+            border-radius: 12px;
+            background-color: rgb(11, 76, 91);
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <table border="1px" cellspacing="5px">
+        <tr>
+            <td>
+                <button>C</button>
+            </td>
+            <td colspan="3">
+                <input type="text">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button>+</button>
+            </td>
+            <td>
+                <button>1</button>
+            </td>
+            <td>
+                <button>2</button>
+            </td>
+            <td>
+                <button>3</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button>-</button>
+            </td>
+            <td>
+                <button>4</button>
+            </td>
+            <td>
+                <button>5</button>
+            </td>
+            <td>
+                <button>6</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button>*</button>
+            </td>
+            <td>
+                <button>7</button>
+            </td>
+            <td>
+                <button>8</button>
+            </td>
+            <td>
+                <button>9</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button>/</button>
+            </td>
+            <td>
+                <button>.</button>
+            </td>
+            <td>
+                <button>0</button>
+            </td>
+            <td>
+                <button>=</button>
+            </td>
+        </tr>
+    </table>
+</body>
+<script>
+    var btns=document.querySelectorAll("table tr td button")
+    var calctext=document.querySelector("table tr td input")
+    var opr=["+","-","*","%","/"]   
+    var op=["*","/","%"]
+
+    btns.forEach((btnv)=>{
+        btnv.addEventListener("click",()=>{
+            var textdata=calctext.value;
+            var lastch=textdata[textdata.length-1];
+            var firstch=textdata[0]
+
+
+            
+
+
+            if(btnv.innerHTML=="C"){
+                calctext.value="";
+            }
+
+
+
+            else if(btnv.innerHTML=="="){
+                if(opr.includes(lastch) || op.includes(firstch)){
+                        alert("invalid")
+                }
+                else{
+                    calctext.value=eval(calctext.value);
+                }
+            }
+
+
+            else{
+                if(opr.includes(btnv.innerText) && opr.includes(lastch)){
+                    calctext.value=textdata.slice(0,-1)+btnv.innerText
+                }
+                else{
+                    calctext.value=textdata+btnv.innerHTML
+                }
+            }
+        })
+    })
+</script>
+</html>
